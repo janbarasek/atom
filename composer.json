@@ -1,5 +1,5 @@
 {
-    "name": ":kdaviesnz/atom",
+    "name": "kdaviesnz/atom",
     "type": "library",
     "description": "Gets atom information",
     "minimum-stability": "dev",
