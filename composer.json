@@ -2,7 +2,6 @@
     "name": "kdaviesnz/atom",
     "type": "library",
     "description": "Gets atom information",
-    "minimum-stability": "dev",
     "keywords": [
         "kdaviesnz",
         "chemistry",
@@ -29,23 +28,5 @@
         "psr-4": {
             "kdaviesnz\\atom\\": "src"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "kdaviesnz\\atom\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "v0.0.2-dev"
-        }
-    },
-    "config": {
-        "sort-packages": true
     }
 }
