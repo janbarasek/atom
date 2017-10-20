@@ -6,7 +6,8 @@ namespace kdaviesnz\atom;
 interface IBond
 {
 
-    public function isPolar():bool;
+    public function isCovalent():bool;
+    public function isPolarCovalent():bool;
     public function getBondedElement():IAtom;
     public function isIonic():bool;
     public function setParentAtom(IAtom $parentAtom);

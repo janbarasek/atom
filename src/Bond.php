@@ -30,14 +30,24 @@ class Bond implements IBond
         return $this->bondedElement;
     }
 
-    /*
-     Formation of Ions
-Ions are formed by the transfer of electrons from the valence shell of an atom of lower electronegativity to the valence shell of an atom of higher electronegativity. As a rough guideline, we say that ions will form if the difference in electronegativ- ity between interacting atoms is 1.9 or greater.
-     */
-    public function isPolar(): bool
+    public function isPolarCovalent(): bool
     {
-        // TODO: Implement isPolar() method.
-        return false;
+        if (!empty($this->parentAtom)) {
+            $parentValence = $this->parentAtom->getValence();
+            $bondedElementValence = $this->bondedElement->getValence();
+            return abs($parentValence - $bondedElementValence) >= 0.5 && abs($parentValence - $bondedElementValence) <= 1.9;
+        }
+        return false;         ;
+    }
+
+    public function isCovalent(): bool
+    {
+        if (!empty($this->parentAtom)) {
+            $parentValence = $this->parentAtom->getValence();
+            $bondedElementValence = $this->bondedElement->getValence();
+            return abs($parentValence - $bondedElementValence) < 0.5;
+        }
+        return false;         ;
     }
 
     public function isIonic(): bool
@@ -45,7 +55,7 @@ Ions are formed by the transfer of electrons from the valence shell of an atom o
         if (!empty($this->parentAtom)) {
             $parentValence = $this->parentAtom->getValence();
             $bondedElementValence = $this->bondedElement->getValence();
-            return abs($parentValence - $bondedElementValence) >= 1.9;
+            return abs($parentValence - $bondedElementValence) > 1.9;
         }
         return false;
     }
