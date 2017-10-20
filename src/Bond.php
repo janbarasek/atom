@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace kdaviesnz\chemistry;
+namespace kdaviesnz\atom;
 
 
 class Bond implements IBond

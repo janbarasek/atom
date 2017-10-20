@@ -1,6 +1,6 @@
 <?php
 
-namespace kdaviesnz\chemistry;
+namespace kdaviesnz\atom;
 
 interface IIon
 {
