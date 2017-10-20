@@ -1,9 +1,11 @@
 <?php
-declare(strict_types=1); // must be first line
+declare(strict_types=1);
 
 namespace kdaviesnz\atom;
 
-class AtomicElement implements IAtomicElement
+use kdaviesnz\matter\Matter;
+
+class AtomicElement extends Matter implements IAtomicElement
 {
 
 

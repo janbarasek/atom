@@ -20,7 +20,7 @@ interface IAtom
     /**
      * @return int
      */
-    public function getValence():integer;
+    public function getValence():int;
 
     /**
      * @return int
@@ -54,5 +54,9 @@ interface IAtom
     public function isPrimary():bool;
 
     public function isElectrophile():bool;
+
+    public function isCation():bool;
+
+    public function isAnion():bool;
 
 }

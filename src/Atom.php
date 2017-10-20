@@ -3,19 +3,20 @@ declare(strict_types = 1); // must be first line
 
 namespace kdaviesnz\atom;
 
-
-class Atom extends AtomicElement implements IAtom
+class Atom extends AtomicElement implements IAtom, IAtomicElement
 {
 
     private $chemicalMap = array();
     private $atomic_number = 0;
     private $group = 0;
     protected $valence = 0;
+    private $base_valence = 0;
     private $electron_configuration = "";
     private $bonds = array();
     private $symbol = "";
     private $electronegativity = 0.00;
     private $charge = "neutral";
+    private $chem = "";
 
     public function isPrimary():bool
     {
@@ -45,11 +46,18 @@ class Atom extends AtomicElement implements IAtom
      */
     public function __construct(string $chem)
     {
+        $this->chem = $chem;
+
+        // Strip out numbers to the left and right.
+        $chem = preg_replace ('/[0-9]*$/' , '' , $chem);
+        $chem = preg_replace('/^[0-9]+/', '', $chem);
+
         $this->chemicalMap = array(
             "H"=>array(
                 "atomic number" => 1,
                 "group" => 1,
                 "valence" => 1,
+                "base valence" => 1,
                 "electron configuration" => "",
                 "electronnegativity" => 2.1,
             ),
@@ -57,19 +65,22 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 2,
                 "group" => 18,
                 "valence" => 0,
+                "base valence" => 0,
                 "electron configuration" => "",
                 "electronnegativity" => 0
             ),
             "Be"=>array(
                 "atomic number" => 4,
                 "group" => 2,
+                "base valence" => 0,
                 "electron configuration" => "",
                 "electronnegativity" => 1.57
             ),
             "C"=>array(
                 "atomic number" => 6,
                 "group" => 14,
-                "valence" => "4",
+                "valence" => 4,
+                "base valence" => 4,
                 "electron configuration" => "",
                 "electronnegativity" => 2.55
             ),
@@ -77,6 +88,7 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 7,
                 "group" => 15,
                 "valence" => 5,
+                "base valence" => 5,
                 "electron configuration" => "",
                 "electronnegativity" => 3.04
             ),
@@ -84,6 +96,7 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 8,
                 "group" => 16,
                 "valence" => 2,
+                "base valence" => 2,
                 "electron configuration" => "",
                 "electronnegativity" => 3.44
             ),
@@ -91,6 +104,7 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 9,
                 "group" => 17,
                 "valence" => 1,
+                "base valence" => 1,
                 "electron configuration" => "",
                 "electronnegativity" => 3.44
             ),
@@ -98,12 +112,14 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 10,
                 "group" => 18,
                 "electron configuration" => "",
-                "electronnegativity" => 0
+                "electronnegativity" => 0,
+                "base valence" => 0,
             ),
             "I"=>array(
                 "atomic number" => 153,
                 "group" => 17,
                 "valence" => 7,
+                "base valence" => 7,
                 "electron configuration" => "",
                 "electronnegativity" => 2.66
             ),
@@ -111,6 +127,7 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 11,
                 "group" => 1,
                 "valence" => 1,
+                "base valence" => 1,
                 "electron configuration" => "",
                 "electronnegativity" => 0.93
             ),
@@ -118,6 +135,7 @@ class Atom extends AtomicElement implements IAtom
                 "atomic number" => 17,
                 "group" => 17,
                 "valence" => 7,
+                "base valence" => 7,
                 "electron configuration" => "",
                 "electronnegativity" => 3.16
             )
@@ -130,6 +148,7 @@ class Atom extends AtomicElement implements IAtom
         $this->atomic_number = $item["atomic number"];
         $this->group = $item["group"];
         $this->valence = $item["valence"];
+        $this->base_valence = $item["base valence"];
         $this->symbol = $chem;
         $this->electronegativity = $item["electronnegativity"];
 
@@ -171,7 +190,7 @@ class Atom extends AtomicElement implements IAtom
     /**
      * @return int
      */
-    public function getValence():integer
+    public function getValence():int
     {
         return $this->valence;
     }
@@ -319,7 +338,23 @@ class Atom extends AtomicElement implements IAtom
     
     public function addBond(IBond $bond){
 
+        $bond->setParentAtom($this);
+        $bondedAtomValence = $bond->getBondedElement()->getValence();
+        if ($bond->isIonic()) {
+            $bondedAtomValence > $this->valence? $this->valence-- : $this->valence++;
+        }
+        $this->bonds[] = $bond;
+
     }
-    
+
+    public function isCation():bool
+    {
+        return $this->valence > $this->base_valence;
+    }
+
+    public function isAnion():bool
+    {
+        return $this->valence < $this->base_valence;
+    }
 
 }
