@@ -59,4 +59,11 @@ interface IAtom
 
     public function isAnion():bool;
 
+    public function removeBond(IBond $bond):bool;
+
+    public function incrementValence();
+
+    public function decrementValence();
+
+
 }

@@ -11,15 +11,18 @@ class Bond implements IBond
     private $type = "single"; // single/double/triple
     private $angle = 0.00;
     private $parentAtom = null;
+    private $id;
 
     /**
      * Bond constructor.
      * @param null $bondedElement
      * @param string $bondType
      */
-    public function __construct(IAtom &$bondedElement, string $type="single", float $angle=0.00)
+    public function __construct(IAtom &$bondedElement, string $id, string $type="single", float $angle=0.00)
     {
         $this->bondedElement = $bondedElement;
+        $this->id = $id;
+        $this->type = $type;
     }
 
     /**
@@ -74,6 +77,30 @@ class Bond implements IBond
     public function setParentAtom(IAtom $parentAtom)
     {
         $this->parentAtom = $parentAtom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
     }
 
 

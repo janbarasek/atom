@@ -12,4 +12,5 @@ interface IBond
     public function isIonic():bool;
     public function setParentAtom(IAtom $parentAtom);
     public function getParentAtom():IAtom;
+    public function getId(): string;
 }

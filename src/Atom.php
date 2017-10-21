@@ -138,7 +138,16 @@ class Atom extends AtomicElement implements IAtom, IAtomicElement
                 "base valence" => 7,
                 "electron configuration" => "",
                 "electronnegativity" => 3.16
+            ),
+            "Br"=>array(
+                "atomic number" => 35,
+                "group" => 17,
+                "valence" => 7,
+                "base valence" => 7,
+                "electron configuration" => "1s22s22p63s23p64s23d104p5",
+                "electronnegativity" => 2.96
             )
+
 
         );
 
@@ -357,4 +366,24 @@ class Atom extends AtomicElement implements IAtom, IAtomicElement
         return $this->valence < $this->base_valence;
     }
 
+    public function removeBond(IBond $bond):bool
+    {
+        $this->bonds = array_values(array_filter(
+            $this->bonds,
+            function($item) use($bond) {
+                return $item->getId() != $bond->getId();
+            }
+        ));
+        return true;
+    }
+
+    public function incrementValence()
+    {
+        $this->valence++;
+    }
+
+    public function decrementValence()
+    {
+        $this->valence--;
+    }
 }
