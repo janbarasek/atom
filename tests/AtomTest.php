@@ -22,22 +22,22 @@ class AtomTest extends PHPUnit_Framework_TestCase
 
     public function testAtom()
     {
-        $H1 = new \kdaviesnz\chemistry\Atom("H");
-        $H2 = new \kdaviesnz\chemistry\Atom("H");
-        $O = new \kdaviesnz\chemistry\Atom("O");
+        $H1 = new \kdaviesnz\atom\Atom("H");
+        $H2 = new \kdaviesnz\atom\Atom("H");
+        $O = new \kdaviesnz\atom\Atom("O");
 
         // Bonds
         $H1->addBond(
-            new \kdaviesnz\chemistry\Bond($O)
+            new \kdaviesnz\atom\Bond($O)
         );
         $H2->addBond(
-            new \kdaviesnz\chemistry\Bond($O)
+            new \kdaviesnz\atom\Bond($O)
         );
         $O->addBond(
-            new \kdaviesnz\chemistry\Bond($H1)
+            new \kdaviesnz\atom\Bond($H1)
         );
         $O->addBond(
-            new \kdaviesnz\chemistry\Bond($H2)
+            new \kdaviesnz\atom\Bond($H2)
         );
 
     }
