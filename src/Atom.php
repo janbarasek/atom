@@ -3,7 +3,7 @@ declare(strict_types = 1); // must be first line
 
 namespace kdaviesnz\atom;
 
-class Atom extends AtomicElement implements IAtom, IAtomicElement
+class Atom extends AtomicElementComponent implements IAtom
 {
 
     private $chemicalMap = array();
@@ -16,25 +16,8 @@ class Atom extends AtomicElement implements IAtom, IAtomicElement
     private $symbol = "";
     private $electronegativity = 0.00;
     private $charge = "neutral";
-    private $chem = "";
+    public $chem = "";
 
-    public function isPrimary():bool
-    {
-        // TODO: Implement isPrimary() method.
-        return false;
-    }
-
-    public function getFormalCharge(): string
-    {
-        // TODO: Implement getFormalCharge() method.
-        return "";
-    }
-
-    public function isElectrophile(): bool
-    {
-        // TODO: Implement isElectrophile() method.
-        return false;
-    }
 
     /**
      * Chemical constructor.
@@ -46,6 +29,7 @@ class Atom extends AtomicElement implements IAtom, IAtomicElement
      */
     public function __construct(string $chem)
     {
+
         $this->chem = $chem;
 
         // Strip out numbers to the left and right.
@@ -386,4 +370,24 @@ class Atom extends AtomicElement implements IAtom, IAtomicElement
     {
         $this->valence--;
     }
+
+
+    public function isPrimary():bool
+    {
+        // TODO: Implement isPrimary() method.
+        return false;
+    }
+
+    public function getFormalCharge(): string
+    {
+        // TODO: Implement getFormalCharge() method.
+        return "";
+    }
+
+    public function isElectrophile(): bool
+    {
+        // TODO: Implement isElectrophile() method.
+        return false;
+    }
+
 }

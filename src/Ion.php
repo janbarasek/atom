@@ -4,7 +4,7 @@ declare(strict_types=1); // must be first line
 namespace kdaviesnz\atom;
 
 
-class Ion extends Atom implements IIon
+class Ion extends AtomicElementDecorator implements IIon
 {
 
     /**
@@ -12,7 +12,8 @@ class Ion extends Atom implements IIon
      */
     public function __construct(string $chem)
     {
-        parent::__construct($chem);
-        $this->valence--;
+        //parent::__construct($chem);
+        $this->atomicElement = new Atom($chem);
+        $this->atomicElement->decrementValence();
     }
 }

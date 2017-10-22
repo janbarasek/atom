@@ -12,7 +12,7 @@ class Proton extends Ion implements IProton
      */
     public function __construct()
     {
-        parent::_construct("H");
+        parent::__construct("H");
 
     }
 }
