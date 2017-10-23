@@ -12,17 +12,19 @@ class Bond implements IBond
     private $angle = 0.00;
     private $parentAtom = null;
     private $id;
+    public $isRecip;
 
     /**
      * Bond constructor.
      * @param null $bondedElement
      * @param string $bondType
      */
-    public function __construct(IAtom &$bondedElement, string $id, string $type="single", float $angle=0.00)
+    public function __construct(IAtom &$bondedElement, string $id, string $type="single", float $angle=0.00, bool $isRecip = false)
     {
         $this->bondedElement = $bondedElement;
         $this->id = $id;
         $this->type = $type;
+        $this->isRecip = $isRecip;
     }
 
     /**
