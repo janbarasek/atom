@@ -1,5 +1,5 @@
 {
-    "name": "kdaviesnz/atom",
+    "name": "kdaviesnz/chemreactions",
     "type": "library",
     "description": "Gets atom information",
     "keywords": [
@@ -7,18 +7,20 @@
         "chemistry",
         "atom"
     ],
-    "homepage": "https://github.com/kdaviesnz/atom",
+    "homepage": "https://github.com/kdaviesnz/chemreactions",
     "license": "MIT",
     "authors": [
         {
             "name": "kdavies",
             "email": "kdaviesnz@gmail.com",
-            "homepage": "https://github.com/kdaviesnz/atom",
+            "homepage": "https://github.com/kdaviesnz/chemreactions",
             "role": "Developer"
         }
     ],
     "require": {
-        "php" : "~7.0"
+        "php" : "~7.0",
+        "kdaviesnz/callbackfileiterator": ">2.0.0",
+        "kdaviesnz/functional": ">=1.1.1"
     },
     "require-dev": {
         "phpunit/phpunit" : ">=5.4.3",
