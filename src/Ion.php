@@ -1,19 +1,15 @@
 <?php
-declare(strict_types=1); // must be first line
+
+declare(strict_types=1);
 
 namespace kdaviesnz\atom;
 
 
 class Ion extends AtomicElementDecorator implements IIon
 {
-
-    /**
-     * Ion constructor.
-     */
-    public function __construct(string $chem)
-    {
-        //parent::__construct($chem);
-        $this->atomicElement = new Atom($chem);
-        $this->atomicElement->decrementValence();
-    }
+	public function __construct(string $chem)
+	{
+		$this->atomicElement = new Atom($chem);
+		$this->atomicElement->decrementValence();
+	}
 }

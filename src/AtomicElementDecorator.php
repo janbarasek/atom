@@ -1,11 +1,10 @@
 <?php
-declare(strict_types=1); // must be first line
 
+declare(strict_types=1);
 
 namespace kdaviesnz\atom;
 
+
 abstract class AtomicElementDecorator extends AtomicElementComponent
 {
-
-
 }
